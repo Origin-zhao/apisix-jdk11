@@ -5,7 +5,7 @@ FROM apache/apisix:${APISIX_VERSION}
 ENV JAVA_VERSION jdk-11.0.11+9
 
 RUN set -eux; \
-    apk add --no-cache --virtual .fetch-deps curl; \
+    apk add --no-cache --virtual .fetch-deps curl openjdk11; \
     ARCH="$(apk --print-arch)"; \
     case "${ARCH}" in \
        amd64|x86_64) \
@@ -26,5 +26,5 @@ RUN set -eux; \
     rm -rf /var/cache/apk/*; \
     rm -rf /tmp/openjdk.tar.gz;
 
-ENV JAVA_HOME=/opt/java/openjdk \
-    PATH="/opt/java/openjdk/bin:$PATH"
+#ENV JAVA_HOME=/opt/java/openjdk \
+#    PATH="/opt/java/openjdk/bin:$PATH"
